@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteBase /delitcwb/portaldelitcuritiba/public/
+
+# Redirecionar todas as requisições para o index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+# Permissões de acesso (necessário para o Apache 2.4+)
+<IfModule authz_core_module>
+    Require all granted
+</IfModule>
+
+# Permissões de acesso (para versões mais antigas do Apache)
+<IfModule !authz_core_module>
+    Allow from all
+</IfModule>
